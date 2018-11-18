@@ -1,6 +1,16 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const dbObj = require('./src/core/db.service');
+const pickAndSchedule = require('./src/core/pick.schedule');
+
+
+
+// connect to DataBase service
+dbObj.connectDB((success)=>{
+    console.log("DB Connection established");
+    pickAndSchedule.pickJobAndScheduleJob();
+});
 
 const port = process.env.port || 3001;
 var appRouter = require('./app_router');
@@ -21,3 +31,5 @@ app.use((req,res,next)=>{
 
 app.use('/',appRouter);
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+

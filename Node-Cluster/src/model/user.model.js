@@ -1,12 +1,10 @@
-function userModel(_userId,_id,_title,_body){
-    let user = '';
-    this.user = {
-        userId:_userId,
-        id:_id,
-        title:_title,
-        body:_body
-    }
-    return user;
-}
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-module.exports = userModel;
+let ProductSchema = new Schema({
+    name: {type: String, required: true, max: 100}
+});
+
+
+// Export the model
+module.exports = mongoose.model('Product', ProductSchema);

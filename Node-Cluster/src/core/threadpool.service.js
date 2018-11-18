@@ -6,7 +6,7 @@ const threadPool = (function(){
     let publicObject = {};
     let worker = ''
 
-    publicObject.forkThread = (filename,_args={},_options=[]) => {
+    publicObject.forkThread = (filename,_args={},_options=[]) => {        
         worker = fork(`${__dirname}/${filename}`,[JSON.stringify(_args)]);  
         worker.on('message',(filename)=>{
             console.log(filename);    
